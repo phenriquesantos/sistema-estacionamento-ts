@@ -5,22 +5,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estacionamento</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      margin-top: 100px;
+      padding: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    tbody tr {
+      background-color: #f0f0f0;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #e4e3e3;
+    }
+
+    td {
+      padding: 5px;
+      text-align: center;
+      border: none;
+      display: table-cell;
+    }
+
+    th {
+      text-transform: uppercase;
+      text-align: center;
+      padding: 5px;
+      border-bottom: 1px #ccc;
+    }
+
+    #form-cadastrar {
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+    }
+
+    #form-cadastrar input {
+      padding: 7px 15px;
+      border: 1px solid #ddd;
+      border-radius: 1rem;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 7px 15px;
+      border-radius: 1rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: rgba(30, 151, 250, 0.993);
+      color: white;
+      font-size: 15px;
+
+    }
+
+    .btn-primary:hover {
+      background-color: rgba(24, 117, 194, 0.993);
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: rgba(223, 11, 46, 0.993);
+      color: white;
+      font-size: 15px;
+
+    }
+
+    .btn-danger:hover {
+      background-color: rgba(189, 12, 42, 0.993);
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-  <input type="text" placeholder="Digite o nome do veiculo" id="nome" autocomplete="false">
-  <input type="text" placeholder="Digite o nome do veiculo" id="placa" autocomplete="false">
-  <button type="submit" id="cadastrar">Cadastrar</button>
 
-  <table>
-    <thead>
-      <th>Nome</th>
-      <th>Placa</th>
-      <th>Hora de entrada</th>
-      <th>Ações</th>
-    </thead>
-    <tbody id="patio"></tbody>
-  </table>
+  <div class="container">
+
+    <h1>Controle de estacionamento</h1>
+
+    <h2>Cadastrar novo veiculo</h2>
+    <form id="form-cadastrar">
+      <input type="text" placeholder="Digite o nome do veiculo" id="nome" autocomplete="false">
+      <input type="text" placeholder="Digite a placa do veiculo" id="placa" autocomplete="false">
+      <button type="submit" id="cadastrar" class="btn btn-primary">Cadastrar</button>
+    </form>
+
+    <div class="listagem">
+      <h2>Veiculos cadastrados</h2>
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Placa</th>
+          <th>Hora de entrada</th>
+          <th>Ações</th>
+        </thead>
+        <tbody id="patio"></tbody>
+      </table>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
