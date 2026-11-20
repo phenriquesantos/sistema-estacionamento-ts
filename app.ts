@@ -8,6 +8,20 @@ interface Veiculo {
   const $ = (query: string): HTMLInputElement | null =>
     document.querySelector(query)
 
+  const valorHora = 15;
+
+  function calculaTempo(diffMs: number): string {
+    const msPorDia = 1000 * 60 * 60 * 24;
+    const msPorHora = 1000 * 60 * 60;
+    const msPorMinuto = 1000 * 60;
+
+    const dias = Math.floor(diffMs / msPorDia);
+    const horas = Math.floor(diffMs % msPorDia / msPorHora);
+    const minutos = Math.floor(diffMs % msPorDia % msPorHora / msPorMinuto);
+
+    return `${dias} Dias ${horas} Horas ${minutos} Minutos`;
+  }
+
   function patio() {
     function ler(): Veiculo[] {
       return localStorage.patio ?
@@ -27,8 +41,13 @@ interface Veiculo {
 
     function remover(placa: string) {
       const veiculos = ler()
-      salvar(veiculos.filter(veiculo => veiculo.placa != placa))
-      render()
+      const veiculo = veiculos.find(veiculo => veiculo.placa === placa);
+      const permanancia = calculaTempo(new Date().getTime() - new Date(veiculo.entrada).getTime())
+
+      if (confirm(`O veiculo permaneceu no estacionamento por ${permanancia}. Deseja encerrar?`)) {
+        salvar(veiculos.filter(veiculo => veiculo.placa !== placa))
+        render()
+      }
     }
 
     function render() {
